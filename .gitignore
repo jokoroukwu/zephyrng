@@ -1,0 +1,11 @@
+#Intellij
+.idea/
+.out/
+*.iml
+*.iws
+
+
+ # Gradle related
+ .gradle/
+ build/
+ bin/
