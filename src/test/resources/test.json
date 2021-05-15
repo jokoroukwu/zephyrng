@@ -1,0 +1,185 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "10000",
+  "self": "https://suneclips3.atlassian.net/rest/api/2/issue/10000",
+  "key": "MYP-1",
+  "fields": {
+    "statuscategorychangedate": "2021-01-23T09:09:17.035+0300",
+    "issuetype": {
+      "self": "https://suneclips3.atlassian.net/rest/api/2/issuetype/10001",
+      "id": "10001",
+      "description": "Небольшая порция работы.",
+      "iconUrl": "https://suneclips3.atlassian.net/secure/viewavatar?size=medium&avatarId=10318&avatarType=issuetype",
+      "name": "Задача",
+      "subtask": false,
+      "avatarId": 10318,
+      "entityId": "28309a93-f394-47bb-a508-7feb5991aedc",
+      "hierarchyLevel": 0
+    },
+    "timespent": null,
+    "project": {
+      "self": "https://suneclips3.atlassian.net/rest/api/2/project/10000",
+      "id": "10000",
+      "key": "MYP",
+      "name": "MyProject",
+      "projectTypeKey": "software",
+      "simplified": true,
+      "avatarUrls": {
+        "48x48": "https://suneclips3.atlassian.net/secure/projectavatar?pid=10000&avatarId=10409",
+        "24x24": "https://suneclips3.atlassian.net/secure/projectavatar?size=small&s=small&pid=10000&avatarId=10409",
+        "16x16": "https://suneclips3.atlassian.net/secure/projectavatar?size=xsmall&s=xsmall&pid=10000&avatarId=10409",
+        "32x32": "https://suneclips3.atlassian.net/secure/projectavatar?size=medium&s=medium&pid=10000&avatarId=10409"
+      }
+    },
+    "fixVersions": [],
+    "aggregatetimespent": null,
+    "resolution": null,
+    "resolutiondate": null,
+    "workratio": -1,
+    "issuerestriction": {
+      "issuerestrictions": {},
+      "shouldDisplay": false
+    },
+    "lastViewed": "2021-01-23T10:57:39.381+0300",
+    "watches": {
+      "self": "https://suneclips3.atlassian.net/rest/api/2/issue/MYP-1/watchers",
+      "watchCount": 1,
+      "isWatching": false
+    },
+    "created": "2021-01-23T09:08:14.783+0300",
+    "customfield_10020": null,
+    "customfield_10021": null,
+    "customfield_10022": null,
+    "priority": {
+      "self": "https://suneclips3.atlassian.net/rest/api/2/priority/3",
+      "iconUrl": "https://suneclips3.atlassian.net/images/icons/priorities/medium.svg",
+      "name": "Medium",
+      "id": "3"
+    },
+    "customfield_10023": null,
+    "customfield_10024": null,
+    "customfield_10025": null,
+    "labels": [],
+    "customfield_10016": null,
+    "customfield_10017": null,
+    "customfield_10018": {
+      "hasEpicLinkFieldDependency": false,
+      "showField": false,
+      "nonEditableReason": {
+        "reason": "PLUGIN_LICENSE_ERROR",
+        "message": "Ссылка на родителя доступна только пользователям Jira Premium."
+      }
+    },
+    "customfield_10019": "0|hzzzzz:",
+    "aggregatetimeoriginalestimate": null,
+    "timeestimate": null,
+    "versions": [],
+    "issuelinks": [],
+    "assignee": {
+      "self": "https://suneclips3.atlassian.net/rest/api/2/user?accountId=6008a06e6aa09b006fac0021",
+      "accountId": "6008a06e6aa09b006fac0021",
+      "avatarUrls": {
+        "48x48": "https://secure.gravatar.com/avatar/84d3244c44100a26587bbf8db37b08c1?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FJ-4.png",
+        "24x24": "https://secure.gravatar.com/avatar/84d3244c44100a26587bbf8db37b08c1?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FJ-4.png",
+        "16x16": "https://secure.gravatar.com/avatar/84d3244c44100a26587bbf8db37b08c1?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FJ-4.png",
+        "32x32": "https://secure.gravatar.com/avatar/84d3244c44100a26587bbf8db37b08c1?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FJ-4.png"
+      },
+      "displayName": "John",
+      "active": true,
+      "timeZone": "Europe/Moscow",
+      "accountType": "atlassian"
+    },
+    "updated": "2021-01-23T09:09:17.035+0300",
+    "status": {
+      "self": "https://suneclips3.atlassian.net/rest/api/2/status/10001",
+      "description": "В данный момент по этой задаче ведется активная работа назначенным лицом.",
+      "iconUrl": "https://suneclips3.atlassian.net/",
+      "name": "В работе",
+      "id": "10001",
+      "statusCategory": {
+        "self": "https://suneclips3.atlassian.net/rest/api/2/statuscategory/4",
+        "id": 4,
+        "key": "indeterminate",
+        "colorName": "yellow",
+        "name": "В работе"
+      }
+    },
+    "components": [],
+    "timeoriginalestimate": null,
+    "description": "Необходимо реализовать взаимодействие",
+    "customfield_10010": null,
+    "customfield_10014": null,
+    "customfield_10015": null,
+    "timetracking": {},
+    "customfield_10005": null,
+    "customfield_10006": null,
+    "security": null,
+    "customfield_10007": null,
+    "customfield_10008": null,
+    "aggregatetimeestimate": null,
+    "customfield_10009": null,
+    "attachment": [],
+    "summary": "Реализовать взаимодействие с API",
+    "creator": {
+      "self": "https://suneclips3.atlassian.net/rest/api/2/user?accountId=6008a06e6aa09b006fac0021",
+      "accountId": "6008a06e6aa09b006fac0021",
+      "avatarUrls": {
+        "48x48": "https://secure.gravatar.com/avatar/84d3244c44100a26587bbf8db37b08c1?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FJ-4.png",
+        "24x24": "https://secure.gravatar.com/avatar/84d3244c44100a26587bbf8db37b08c1?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FJ-4.png",
+        "16x16": "https://secure.gravatar.com/avatar/84d3244c44100a26587bbf8db37b08c1?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FJ-4.png",
+        "32x32": "https://secure.gravatar.com/avatar/84d3244c44100a26587bbf8db37b08c1?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FJ-4.png"
+      },
+      "displayName": "John",
+      "active": true,
+      "timeZone": "Europe/Moscow",
+      "accountType": "atlassian"
+    },
+    "subtasks": [],
+    "reporter": {
+      "self": "https://suneclips3.atlassian.net/rest/api/2/user?accountId=6008a06e6aa09b006fac0021",
+      "accountId": "6008a06e6aa09b006fac0021",
+      "avatarUrls": {
+        "48x48": "https://secure.gravatar.com/avatar/84d3244c44100a26587bbf8db37b08c1?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FJ-4.png",
+        "24x24": "https://secure.gravatar.com/avatar/84d3244c44100a26587bbf8db37b08c1?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FJ-4.png",
+        "16x16": "https://secure.gravatar.com/avatar/84d3244c44100a26587bbf8db37b08c1?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FJ-4.png",
+        "32x32": "https://secure.gravatar.com/avatar/84d3244c44100a26587bbf8db37b08c1?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FJ-4.png"
+      },
+      "displayName": "John",
+      "active": true,
+      "timeZone": "Europe/Moscow",
+      "accountType": "atlassian"
+    },
+    "aggregateprogress": {
+      "progress": 0,
+      "total": 0
+    },
+    "customfield_10000": "{}",
+    "customfield_10001": null,
+    "customfield_10002": null,
+    "customfield_10003": null,
+    "customfield_10004": null,
+    "environment": null,
+    "duedate": null,
+    "progress": {
+      "progress": 0,
+      "total": 0
+    },
+    "comment": {
+      "comments": [],
+      "maxResults": 0,
+      "total": 0,
+      "startAt": 0
+    },
+    "votes": {
+      "self": "https://suneclips3.atlassian.net/rest/api/2/issue/MYP-1/votes",
+      "votes": 0,
+      "hasVoted": false
+    },
+    "worklog": {
+      "startAt": 0,
+      "maxResults": 20,
+      "total": 0,
+      "worklogs": []
+    }
+  }
+}
