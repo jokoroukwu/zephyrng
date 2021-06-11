@@ -1,8 +1,9 @@
 plugins {
-    kotlin("jvm")
-    kotlin("plugin.serialization")
+    kotlin("jvm") version "1.5.0"
+    kotlin("plugin.serialization") version "1.5.0"
 }
 
+//val kotlinVersion = "1.5.0"
 group = "com.gmail.suneclips3"
 version = "1.0-SNAPSHOT"
 
@@ -18,7 +19,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
     implementation("com.charleskorn.kaml:kaml:0.26.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
-
+    testImplementation(kotlin("test-testng", "1.5.10"))
+    testImplementation("io.mockk:mockk:1.11.0")
+    testImplementation("org.assertj:assertj-core:3.19.0")
 }
 
 java {
