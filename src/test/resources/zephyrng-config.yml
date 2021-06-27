@@ -1,0 +1,6 @@
+time-zone: GMT+3
+project-key: PROJKEY
+jira-url: https://localhost:8089
+username: username
+password: password
+
