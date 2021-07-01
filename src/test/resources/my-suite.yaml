@@ -1,5 +1,0 @@
-name: "has"
-tests:
-  - name: some-test
-    packages:
-      - com.gmail.johnokoroukwu.zephyrng.tests.sandbox.*
