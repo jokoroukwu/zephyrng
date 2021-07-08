@@ -11,18 +11,6 @@ version = "0.1.0"
 repositories {
     mavenCentral()
     jcenter()
-    maven {
-        name = "sonatype"
-        url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-        credentials {
-            username = property("sonatypeUser") as String
-            password = property("sonatypePassword") as String
-        }
-    }
-    maven {
-        name = "my-repo"
-        url = uri("""C:\Users\JOkoroukwu\IdeaProjects\zephyrng\my-repo""")
-    }
 }
 
 dependencies {
@@ -78,6 +66,21 @@ publishing {
                         email.set("john.okoroukwu@gmail.com")
                     }
                 }
+                scm {
+                    connection.set("scm:git:git://github.com//jokoroukwu/zephyrng.git")
+                    developerConnection.set("scm:git:ssh://jokoroukwu/zephyrng.git")
+                    url.set("https://github.com/jokoroukwu/zephyrng")
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "sonatype"
+            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials {
+                username = property("sonatypeUser") as String
+                password = property("sonatypePassword") as String
             }
         }
     }
