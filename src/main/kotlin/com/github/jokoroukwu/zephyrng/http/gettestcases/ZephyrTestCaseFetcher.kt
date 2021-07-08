@@ -19,7 +19,7 @@ class ZephyrTestCaseFetcher(
             ?.let { ZephyrProjectWithTestCases(it.first().projectId, mapTestCasesToId(it)) }
     }
 
-    private fun mapTestCasesToId(resultItems: Collection<ResultItem>): Map<String, Int> {
+    private fun mapTestCasesToId(resultItems: Collection<ResultItem>): Map<String, Long> {
         return Collections.unmodifiableMap(resultItems.associateTo(HashMap(resultItems.size, 1F))
         { it.key to it.id })
     }

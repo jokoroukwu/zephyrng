@@ -60,7 +60,7 @@ class TestResultToIdMapperTestStatus {
             passItem, failItem, inProgressItem,
             notExecutedItem, blockedItem
         )
-        val expectedResultMap = hashMapOf(
+        val expectedResultMap = hashMapOf<TestResultStatus, Long>(
             TestResultStatus.PASS to 0,
             TestResultStatus.FAIL to 1,
             TestResultStatus.BLOCKED to 2,

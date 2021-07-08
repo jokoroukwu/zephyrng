@@ -6,6 +6,6 @@ interface TestCaseIdInjector {
 
     fun injectTestCaseIds(
         testSuitesWithResults: List<TestNgZephyrSuite>,
-        testCaseKeyToIdMap: Map<String, Int>
+        testCaseKeyToIdMap: Map<String, Long>
     ): TestCasesIdInjectResult
 }

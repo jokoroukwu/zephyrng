@@ -25,7 +25,7 @@ import java.util.*
 
 class UpdatableResultMapperTest {
     companion object {
-        private val testResultStatusToIdMap = EnumMap<TestResultStatus, Int>(TestResultStatus::class.java).apply {
+        private val testResultStatusToIdMap = EnumMap<TestResultStatus, Long>(TestResultStatus::class.java).apply {
             put(TestResultStatus.BLOCKED, 1)
             put(TestResultStatus.FAIL, 2)
             put(TestResultStatus.IN_PROGRESS, 3)
@@ -101,7 +101,8 @@ class UpdatableResultMapperTest {
         every { mergeStrategyMock.mergeResults(any(), any(), any()) } returns MergeResult(
             testScriptResults = expectedTestScriptResults,
             commentRow = expectedCommentRow,
-            error = "test error"
+            error = "test error",
+            status = TestResultStatus.FAIL
         )
 
         val resultPair = updatableResultsMapper.mapToUpdatableResults(

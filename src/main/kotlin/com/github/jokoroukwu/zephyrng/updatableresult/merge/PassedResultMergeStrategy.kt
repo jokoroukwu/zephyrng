@@ -8,7 +8,7 @@ import com.github.jokoroukwu.zephyrng.updatableresult.CommentRow
 object PassedResultMergeStrategy : ResultMergeStrategy {
 
     override fun mergeResults(
-        testResultStatusToIdMap: Map<TestResultStatus, Int>,
+        testResultStatusToIdMap: Map<TestResultStatus, Long>,
         zephyrDataSet: List<ZephyrStepResult>,
         testNgDataSetResult: com.github.jokoroukwu.zephyrng.TestNgDataSetResult
     ): MergeResult {
@@ -17,14 +17,19 @@ object PassedResultMergeStrategy : ResultMergeStrategy {
             val warning =
                 "Data set result will be displayed in comment field: " +
                         "data set index out of bounds: {index: ${testNgDataSetResult.index}}"
-            MergeResult(emptyList(), CommentRow(testNgDataSetResult.index, TestResultStatus.PASS), warning)
+            MergeResult(
+                testScriptResults = emptyList(),
+                commentRow = CommentRow(testNgDataSetResult.index, TestResultStatus.PASS),
+                error = warning,
+                status = TestResultStatus.PASS
+            )
         } else {
             val passedStatusId = testResultStatusToIdMap.getValue(TestResultStatus.PASS)
             ArrayList<TestScriptResult>(zephyrDataSet.size).let { list ->
                 zephyrDataSet.forEach {
                     list.add(TestScriptResult(it.id, passedStatusId))
                 }
-                MergeResult(list)
+                MergeResult(testScriptResults = list, status = TestResultStatus.PASS)
             }
         }
     }

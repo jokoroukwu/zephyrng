@@ -4,8 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class SerializableTestResult(
-    val id: Int,
-    val testResultStatusId: Int,
+    val id: Long,
+    val testResultStatusId: Long,
     val comment: String,
     val executionTime: Long
 )

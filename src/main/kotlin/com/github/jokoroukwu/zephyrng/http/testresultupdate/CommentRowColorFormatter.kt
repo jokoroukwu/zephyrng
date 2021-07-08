@@ -26,12 +26,12 @@ object CommentRowColorFormatter : ICommentRowFormatter {
      * @return a string with meta information for proper formatting in Zephyr
      */
     override fun formatCommentRow(commentRows: Collection<CommentRow>) =
-        commentRows.joinToString(
+        commentRows.takeUnless(Collection<CommentRow>::isEmpty)?.joinToString(
             prefix = "${BOLD_TAG_OPEN}Data sets results:$LINE_BREAK$LINE_BREAK",
             separator = "$LINE_BREAK$LINE_BREAK",
             postfix = BOLD_TAG_CLOSE,
             transform = CommentRowColorFormatter::rowToString
-        )
+        ) ?: ""
 
     private fun rowToString(row: CommentRow): String {
         val rgbColorTag = if (row.status == TestResultStatus.PASS) PASSED_COLOR_OPEN else FAILED_COLOR_OPEN

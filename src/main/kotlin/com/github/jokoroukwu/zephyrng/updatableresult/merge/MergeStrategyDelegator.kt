@@ -9,7 +9,7 @@ class MergeStrategyDelegator(
 ) : ResultMergeStrategy {
 
     override fun mergeResults(
-        testResultStatusToIdMap: Map<TestResultStatus, Int>,
+        testResultStatusToIdMap: Map<TestResultStatus, Long>,
         zephyrDataSet: List<ZephyrStepResult>,
         testNgDataSetResult: com.github.jokoroukwu.zephyrng.TestNgDataSetResult
     ): MergeResult {

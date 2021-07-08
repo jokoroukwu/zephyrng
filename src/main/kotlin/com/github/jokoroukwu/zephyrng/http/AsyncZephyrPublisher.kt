@@ -40,9 +40,9 @@ class AsyncZephyrPublisher(
      * @param testResultStatusToIdMap a map where every each Zephyr status is mapped to the corresponding id
      */
     fun submitResults(
-        projectId: Int,
+        projectId: Long,
         testNgZephyrSuites: Collection<TestNgZephyrSuite>,
-        testResultStatusToIdMap: Map<TestResultStatus, Int>
+        testResultStatusToIdMap: Map<TestResultStatus, Long>
     ) {
         if (testNgZephyrSuites.isNotEmpty()) {
             logger.info { "Publishing TestNG test results" }

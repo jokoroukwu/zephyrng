@@ -10,7 +10,7 @@ interface IZephyrNgConfig {
     fun timeZone(): ZoneId
 
     /**
-     * JIRA project URL e.g https://my-jira:9091
+     * JIRA server URL e.g https://my-jira:9091
      */
     fun jiraUrl(): String
 

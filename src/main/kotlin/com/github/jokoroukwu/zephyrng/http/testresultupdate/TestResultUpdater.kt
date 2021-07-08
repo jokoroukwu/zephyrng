@@ -27,7 +27,7 @@ class TestResultUpdater(
 
     suspend fun updateTestResult(
         testCycleKey: String,
-        statusToIdMap: Map<TestResultStatus, Int>,
+        statusToIdMap: Map<TestResultStatus, Long>,
         testResults: Collection<UpdatableTestResult>
     ) {
         requestFactory.runCatching {
@@ -51,13 +51,13 @@ class TestResultUpdater(
 
 
     private fun mapToSerializableTestResults(
-        testResultStatusToIdMap: Map<TestResultStatus, Int>,
+        testResultStatusToIdMap: Map<TestResultStatus, Long>,
         updatableTestResults: Collection<UpdatableTestResult>
     ): List<SerializableTestResult> {
 
         val serializableTestResults = ArrayList<SerializableTestResult>(updatableTestResults.size)
         for (updatableTestResult in updatableTestResults) {
-            val testResultStatus = updatableTestResult.getEffectiveStatus()
+            val testResultStatus = updatableTestResult.effectiveStatus
             val testResultStatusId = testResultStatusToIdMap.getValue(testResultStatus)
             serializableTestResults.add(
                 SerializableTestResult(

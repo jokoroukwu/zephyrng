@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class ZephyrTestResult(
-    val id: Int,
+    val id: Long,
     val testCase: TestCase,
     val testScriptResults: List<ZephyrStepResult>
 )

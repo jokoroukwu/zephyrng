@@ -21,7 +21,7 @@ class GetTestResultStatusesRequestSender(
     private val errorMessageTemplate = "Failed to fetch test result statuses"
 
     fun getTestResultStatusesRequest(
-        zephyrProjectId: Int
+        zephyrProjectId: Long
     ): List<SerializableTestResultStatusItem> {
 
         return requestFactory.runCatching {

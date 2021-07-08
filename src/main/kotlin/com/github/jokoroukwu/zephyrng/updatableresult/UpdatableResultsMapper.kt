@@ -20,7 +20,7 @@ class UpdatableResultsMapper(
         testCycleKey: String,
         detailedReportResultZephyrs: List<ZephyrTestResult>,
         suiteWithResults: TestNgZephyrSuite,
-        testResultStatusToIdMap: Map<TestResultStatus, Int>
+        testResultStatusToIdMap: Map<TestResultStatus, Long>
     ): Pair<List<TestScriptResult>, List<UpdatableTestResult>> {
 
         return toUpdatableTestResultsAndScriptResults(
@@ -36,7 +36,7 @@ class UpdatableResultsMapper(
         testCycleKey: String,
         detailedReportResultZephyrs: List<ZephyrTestResult>,
         testSuite: TestNgZephyrSuite,
-        testResultStatusToIdMap: Map<TestResultStatus, Int>
+        testResultStatusToIdMap: Map<TestResultStatus, Long>
     ): Pair<List<TestScriptResult>, List<UpdatableTestResult>> {
         val idToZephyrTestResult = detailedReportResultZephyrs.let {
             it.associateByTo(HashMap(it.size, 1F)) { result -> result.testCase.id }
@@ -54,13 +54,14 @@ class UpdatableResultsMapper(
                 val zephyrDataSets = zephyrTestResultToDataSetMapper.mapTestResultToZephyrDataSets(zephyrTestResult)
                 val testNgDataSets = testCaseWithTestNgResult.dataSetResults
                 val commentRows = TreeSet<CommentRow>()
-
+                val effectiveStatusSet = EnumSet.noneOf(TestResultStatus::class.java)
                 testNgDataSets.forEachIndexed { i, testNgDataSet ->
                     zephyrDataSets.getOrElse(i) { emptyList() }.also { zephyrDataSet ->
                         mergeStrategy.mergeResults(testResultStatusToIdMap, zephyrDataSet, testNgDataSet).apply {
                             error?.also { logMergeWarning(error, testCycleKey, testCaseWithTestNgResult.key) }
                             commentRow?.apply(commentRows::add)
                             updatableTestScriptResults.addAll(testScriptResults)
+                            effectiveStatusSet.add(status)
                         }
                     }
                 }
@@ -70,6 +71,7 @@ class UpdatableResultsMapper(
                         endTime = testCaseWithTestNgResult.endTime,
                         testResultId = zephyrTestResult.id,
                         commentRows = commentRows,
+                        effectiveStatus = effectiveStatusSet.getEffectiveStatus()
                     )
                 )
             }
@@ -85,9 +87,12 @@ class UpdatableResultsMapper(
         logger.error {
             "Result will not be updated: {test_case_key: $testCaseKey, " +
                     "reason: no mapping for given test case " +
-                    "(this may only happen if test result was deleted from Zephyr after creation but before it was updated)}"
+                    "(this may only happen if test result had been removed from JIRA server after creation but before it was updated)}"
         }
     }
+
+    private fun Set<TestResultStatus>.getEffectiveStatus() =
+        if (contains(TestResultStatus.FAIL)) TestResultStatus.FAIL else TestResultStatus.PASS
 }
 
 

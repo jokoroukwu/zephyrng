@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class UpdateTestCycleRequest(
-    val testRunId: Int,
+    val testRunId: Long,
     val addedTestRunItems: List<TestRunItem>
 )

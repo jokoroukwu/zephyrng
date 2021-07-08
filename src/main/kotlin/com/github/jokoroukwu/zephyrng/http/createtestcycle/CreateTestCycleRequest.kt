@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class CreateTestCycleRequest(
-    val projectId: Int,
+    val projectId: Long,
     val name: String,
     val plannedStartDate: String,
     val plannedEndDate: String

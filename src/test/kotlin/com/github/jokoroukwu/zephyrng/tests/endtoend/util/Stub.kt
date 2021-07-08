@@ -22,8 +22,8 @@ import org.apache.http.entity.ContentType
 import java.util.*
 
 const val DEFAULT_CYCLE_KEY = "test-cycle-key"
-const val DEFAULT_PROJECT_ID = 1
-const val DEFAULT_CYCLE_ID = 1
+const val DEFAULT_PROJECT_ID = 1L
+const val DEFAULT_CYCLE_ID = 1L
 
 fun WireMockServer.stubUpdateTestScriptResultsRequest(
     config: IZephyrNgConfig = ZephyrNgConfigLoaderImpl.zephyrNgConfig(),
@@ -46,7 +46,7 @@ fun WireMockServer.stubUpdateTestResultsRequest(config: IZephyrNgConfig = Zephyr
 fun WireMockServer.stubGetDetailedReportRequest(
     testRunDetailReport: TestRunDetailReport,
     cycleKey: String = DEFAULT_CYCLE_KEY,
-    projectId: Int = DEFAULT_PROJECT_ID,
+    projectId: Long = DEFAULT_PROJECT_ID,
     config: IZephyrNgConfig = ZephyrNgConfigLoaderImpl.zephyrNgConfig()
 ): UUID {
     return stubFor(
@@ -94,7 +94,7 @@ fun WireMockServer.stubCreateTestCycleRequest(
 
 
 fun WireMockServer.stubGetTestResultStatusesRequest(
-    projectId: Int = DEFAULT_PROJECT_ID,
+    projectId: Long = DEFAULT_PROJECT_ID,
     config: IZephyrNgConfig = ZephyrNgConfigLoaderImpl.zephyrNgConfig()
 ) {
     stubFor(
@@ -104,7 +104,9 @@ fun WireMockServer.stubGetTestResultStatusesRequest(
                 ok().applyResponseHeaders().withBody(
                     with(EnumSet.allOf(TestResultStatus::class.java)) {
                         ArrayList<SerializableTestResultStatusItem>().also {
-                            forEachIndexed { i, status -> it.add(SerializableTestResultStatusItem(i, status)) }
+                            forEachIndexed { i, status ->
+                                it.add(SerializableTestResultStatusItem(i.toLong(), status))
+                            }
                         }
                     }.run(Json::encodeToString)
                 )

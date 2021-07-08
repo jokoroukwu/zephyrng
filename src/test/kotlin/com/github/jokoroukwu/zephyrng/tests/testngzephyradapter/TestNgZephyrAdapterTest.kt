@@ -61,8 +61,8 @@ class TestNgZephyrAdapterTest {
         }
         every { suiteWithResultsFactoryMock.get(any()) } returns testSuiteWithResultMock
 
-        val keyToIdMap = hashMapOf(testCaseKey to 0)
-        val projectId = 1
+        val keyToIdMap = hashMapOf(testCaseKey to 0L)
+        val projectId = 1L
         every { testCaseFetcherMock.fetchProjectWithTestCases(any()) } returns
                 ZephyrProjectWithTestCases(projectId, keyToIdMap)
 
@@ -70,8 +70,8 @@ class TestNgZephyrAdapterTest {
         every { testCaseIdInjectorMock.injectTestCaseIds(any(), any()) } returns
                 TestCasesIdInjectResult(suitesWithResults, emptySet(), emptySet())
 
-        val testResultStatusToIdMap = EnumMap<TestResultStatus, Int>(TestResultStatus::class.java).apply {
-            put(TestResultStatus.PASS, 0)
+        val testResultStatusToIdMap = EnumMap<TestResultStatus, Long>(TestResultStatus::class.java).apply {
+            put(TestResultStatus.PASS, 0L)
         }
         every { testResultToIdMapperMock.getTestResultStatusToIdMap(any()) } returns testResultStatusToIdMap
 
@@ -100,8 +100,8 @@ class TestNgZephyrAdapterTest {
         }
         every { suiteWithResultsFactoryMock.get(any()) } returns testSuiteWithResultMock
 
-        val keyToIdMap = hashMapOf(testCaseKey to 0)
-        val projectId = 1
+        val keyToIdMap = hashMapOf(testCaseKey to 0L)
+        val projectId = 1L
         every { testCaseFetcherMock.fetchProjectWithTestCases(any()) } returns
                 ZephyrProjectWithTestCases(projectId, keyToIdMap)
 
@@ -109,8 +109,8 @@ class TestNgZephyrAdapterTest {
         every { testCaseIdInjectorMock.injectTestCaseIds(any(), any()) } returns
                 TestCasesIdInjectResult(suitesWithResults, emptySet(), emptySet())
 
-        val testResultStatusToIdMap = EnumMap<TestResultStatus, Int>(TestResultStatus::class.java).apply {
-            put(TestResultStatus.PASS, 0)
+        val testResultStatusToIdMap = EnumMap<TestResultStatus, Long>(TestResultStatus::class.java).apply {
+            put(TestResultStatus.PASS, 0L)
         }
         every { testResultToIdMapperMock.getTestResultStatusToIdMap(any()) } returns testResultStatusToIdMap
 
@@ -138,7 +138,7 @@ class TestNgZephyrAdapterTest {
         }
         every { suiteWithResultsFactoryMock.get(any()) } returns testSuiteWithResultMock
 
-        val keyToIdMap = hashMapOf(testCaseKey to 0)
+        val keyToIdMap = hashMapOf(testCaseKey to 0L)
         every { testCaseFetcherMock.fetchProjectWithTestCases(any()) } returns mockk {
             every { testCaseKeyToIdMap } returns keyToIdMap
         }

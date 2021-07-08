@@ -12,12 +12,12 @@ import org.testng.annotations.Test
 import java.util.*
 
 class FailedMergeStrategyTest {
-    private val failedResultId = 1
-    private val passedResultId = 2
-    private val blockedResultId = 3
+    private val failedResultId = 1L
+    private val passedResultId = 2L
+    private val blockedResultId = 3L
     private val message = "test-message"
 
-    private val testResultStatusToId = EnumMap<TestResultStatus, Int>(TestResultStatus::class.java).apply {
+    private val testResultStatusToId = EnumMap<TestResultStatus, Long>(TestResultStatus::class.java).apply {
         put(TestResultStatus.FAIL, failedResultId)
         put(TestResultStatus.PASS, passedResultId)
         put(TestResultStatus.BLOCKED, blockedResultId)
@@ -65,7 +65,11 @@ class FailedMergeStrategyTest {
                 message
             )
         val commentRowForEmptyResults = CommentRow(dataSetIndex, TestResultStatus.FAIL, message)
-        val mergeResultForEmptyResult = MergeResult(emptyList(), commentRowForEmptyResults)
+        val mergeResultForEmptyResult = MergeResult(
+            testScriptResults = emptyList(),
+            commentRow = commentRowForEmptyResults,
+            status = TestResultStatus.FAIL
+        )
 
         val outOfBoundResults = listOf(TestScriptResult(0, failedStatusId))
         val testNgDataSetForOutOfBoundsResults =
@@ -78,7 +82,11 @@ class FailedMergeStrategyTest {
                 message
             )
         val commentRowForOutOfBoundResults = CommentRow(dataSetIndex, TestResultStatus.FAIL, message)
-        val outOfBoundsMergeResult = MergeResult(emptyList(), commentRowForOutOfBoundResults)
+        val outOfBoundsMergeResult = MergeResult(
+            testScriptResults = emptyList(),
+            commentRow = commentRowForOutOfBoundResults,
+            status = TestResultStatus.FAIL
+        )
 
         return arrayOf(
             arrayOf(emptyResults, testNgDataSetForEmptyResults, outOfBoundsMergeResult),
@@ -117,29 +125,32 @@ class FailedMergeStrategyTest {
         val allStatusTestNgDataSet =
             com.github.jokoroukwu.zephyrng.TestNgDataSetResult(startTime, endTime, 0, false, 1, message)
         val expectedAllStatusMergeResult = MergeResult(
-            listOf(
+            testScriptResults = listOf(
                 TestScriptResult(0, passedResultId),
                 TestScriptResult(1, failedResultId, message),
                 TestScriptResult(2, blockedResultId)
-            )
+            ),
+            status = TestResultStatus.FAIL
         )
         val noBlockedStatusTestNgDataSetResult =
             com.github.jokoroukwu.zephyrng.TestNgDataSetResult(startTime, endTime, 0, false, 2, message)
         val expectedNoBlockedStatusMergeResult = MergeResult(
-            listOf(
+            testScriptResults = listOf(
                 TestScriptResult(0, passedResultId),
                 TestScriptResult(1, passedResultId),
                 TestScriptResult(2, failedResultId, message)
-            )
+            ),
+            status = TestResultStatus.FAIL
         )
         val noPassedStatusTestNgDataSetResult =
             com.github.jokoroukwu.zephyrng.TestNgDataSetResult(startTime, endTime, 0, false, 0, message)
         val expectedNoPassedStatusMergeResult = MergeResult(
-            listOf(
+            testScriptResults = listOf(
                 TestScriptResult(0, failedResultId, message),
                 TestScriptResult(1, blockedResultId),
                 TestScriptResult(2, blockedResultId)
-            )
+            ),
+            status = TestResultStatus.FAIL
         )
         return arrayOf(
             arrayOf(scriptResults, allStatusTestNgDataSet, expectedAllStatusMergeResult),

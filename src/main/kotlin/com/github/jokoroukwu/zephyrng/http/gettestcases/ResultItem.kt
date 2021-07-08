@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ResultItem(
-    val id: Int,
+    val id: Long,
     val key: String,
-    val projectId: Int
+    val projectId: Long
 )

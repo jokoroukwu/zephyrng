@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CreateTestCycleResponse(
-    val id: Int,
+    val id: Long,
     val key: String,
     val serializableTestRunItems: List<TestRunItem> = emptyList()
 )

@@ -5,7 +5,7 @@ import com.github.jokoroukwu.zephyrng.http.testresultstatus.TestResultStatus
 /**
  * An indexed text row in the "Comment" field of Zephyr test result.
  * Used to update test result when it is impossible to do so by steps,
- * either because the failed step index is out of bounds or no [com.gmail.johnokoroukwu.zephyrng.annotations.ZephyrStep]
+ * either because the failed step index is out of bounds or no [com.github.jokoroukwu.zephyrng.annotations.ZephyrStep]
  * annotations were found at all.
  *
  */

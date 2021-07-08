@@ -1,8 +1,11 @@
 package com.github.jokoroukwu.zephyrng
 
 /**
- * Represents TestNG test result for a particular data set
- * of [org.testng.annotations.DataProvider]
+ * Represents TestNG test result for a particular data set.
+ * Used primarily to separate data driven tests results, although
+ * non data driven test will still be associated with a single [TestNgDataSetResult].
+ *
+ * @see [org.testng.annotations.DataProvider]
  */
 data class TestNgDataSetResult(
     val startTime: Long,

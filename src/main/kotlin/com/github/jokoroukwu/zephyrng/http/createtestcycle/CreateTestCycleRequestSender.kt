@@ -19,11 +19,19 @@ class CreateTestCycleRequestSender(
     private val url = "$baseUrl/testrun"
     private val errorMessageTemplate = "failed to create Zephyr test cycle"
 
+    /**
+     * Performs an HTTP request to create a new Zephyr test cycle.
+     * The provided [testNgZephyrSuite] name will be joined with start and end time properties
+     * and used as test cycle name.
+     *
+     * @param projectId JIRA project id
+     * @param testNgZephyrSuite suite
+     */
     suspend fun createTestCycle(
-        projectId: Int,
-        suiteWithTestNgZephyrSuite: TestNgZephyrSuite,
+        projectId: Long,
+        testNgZephyrSuite: TestNgZephyrSuite,
     ): CreateTestCycleResponse {
-        val testCycleName = suiteWithTestNgZephyrSuite.name
+        val testCycleName = testNgZephyrSuite.name
         return requestFactory.runCatching {
             post(url)
                 .authentication().basic(zephyrConfig.username(), zephyrConfig.password())
@@ -32,8 +40,8 @@ class CreateTestCycleRequestSender(
                         CreateTestCycleRequest(
                             projectId = projectId,
                             name = testCycleName,
-                            plannedStartDate = suiteWithTestNgZephyrSuite.plannedStartDate,
-                            plannedEndDate = suiteWithTestNgZephyrSuite.plannedEndDate,
+                            plannedStartDate = testNgZephyrSuite.plannedStartDate,
+                            plannedEndDate = testNgZephyrSuite.plannedEndDate,
                         )
                     )
                 ).treatResponseAsValid()

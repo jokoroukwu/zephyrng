@@ -18,7 +18,7 @@ class GetDetailedReportSender(
     private val errorMessageTemplate = "failed to fetch detailed report"
 
     suspend fun getDetailedReport(
-        projectId: Int,
+        projectId: Long,
         testCycleKey: String,
     ): GetDetailedReportResponse {
 
@@ -34,8 +34,7 @@ class GetDetailedReportSender(
             .runCatching<ZephyrResponse, GetDetailedReportResponse>(ZephyrResponse::getJsonBody)
             .getOrElse { cause ->
                 throw ZephyrException(
-                    "$errorMessageTemplate: body deserialization error: {test_cycle_key: $testCycleKey}",
-                    cause
+                    "$errorMessageTemplate: body deserialization error: {test_cycle_key: $testCycleKey}", cause
                 )
             }
     }

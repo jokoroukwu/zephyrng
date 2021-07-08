@@ -10,8 +10,8 @@ import org.testng.annotations.Test
 import java.util.*
 
 class PassedMergeStrategyTest {
-    private val passedStatusId = 0
-    private val statusToIdMap = EnumMap<TestResultStatus, Int>(TestResultStatus::class.java).apply {
+    private val passedStatusId = 0L
+    private val statusToIdMap = EnumMap<TestResultStatus, Long>(TestResultStatus::class.java).apply {
         put(TestResultStatus.PASS, passedStatusId)
     }
     private val dataSetIndex = 1
@@ -38,16 +38,16 @@ class PassedMergeStrategyTest {
 
     @Test
     fun `should return expected merge result for non empty script results`() {
-        val scriptResultIdOne = 0
-        val scriptResultIdTwo = 1
+        val scriptResultIdOne = 0L
+        val scriptResultIdTwo = 1L
         val expectedScriptResults = listOf(
             TestScriptResult(scriptResultIdOne, passedStatusId),
             TestScriptResult(scriptResultIdTwo, passedStatusId)
         )
         val detailedReportTestScriptResults =
             listOf(
-                ZephyrStepResult(scriptResultIdOne, scriptResultIdOne),
-                ZephyrStepResult(scriptResultIdTwo, scriptResultIdTwo)
+                ZephyrStepResult(scriptResultIdOne, scriptResultIdOne.toInt()),
+                ZephyrStepResult(scriptResultIdTwo, scriptResultIdTwo.toInt())
             )
         val actualMergeResult =
             PassedResultMergeStrategy.mergeResults(statusToIdMap, detailedReportTestScriptResults, testNgDataSetResult)

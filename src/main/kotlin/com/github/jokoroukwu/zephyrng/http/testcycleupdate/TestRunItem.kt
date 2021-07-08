@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 class TestRunItem(
     val index: Int,
-    val lastTestResult: SerializableTestResult,
+    val lastTestResult: UpdateTestCycleTestResult,
     val id: Int? = null
 )

@@ -7,7 +7,7 @@ class TestResultStatusToIdMapProvider(
     private val getTestResultStatusesRequestSender: GetTestResultStatusesRequestSender = GetTestResultStatusesRequestSender()
 ) {
 
-    fun getTestResultStatusToIdMap(projectId: Int): Map<TestResultStatus, Int> {
+    fun getTestResultStatusToIdMap(projectId: Long): Map<TestResultStatus, Long> {
         return getTestResultStatusesRequestSender.getTestResultStatusesRequest(projectId)
             .associateTo(EnumMap(TestResultStatus::class.java)) { it.name to it.id }
             .also { map ->

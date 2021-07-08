@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class TestCase(
-    val id: Int,
+    val id: Long,
     val key: String,
     val name: String,
 )

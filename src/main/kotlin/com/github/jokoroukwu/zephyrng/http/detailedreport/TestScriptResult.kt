@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TestScriptResult(
-    val id: Int,
-    val testResultStatusId: Int,
+    val id: Long,
+    val testResultStatusId: Long,
     val comment: String? = null
 )

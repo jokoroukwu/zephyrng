@@ -20,8 +20,14 @@ class UpdateTestCycleRequestSender(
     private val url = "${baseUrl}/testrunitem/bulk/save"
     private val errorMessageTemplate = "Failed to add test cases to Zephyr test cycle"
 
+    /**
+     * Performs and HTTP-request to populate a test cycle with test cases from [testNgZephyrSuite]
+     *
+     * @see [TestNgZephyrSuite]
+     * @param createTestCycleResponse a DTO encapsulating created test cycle state*
+     */
     suspend fun putTestCasesRequest(
-        suite: TestNgZephyrSuite,
+        testNgZephyrSuite: TestNgZephyrSuite,
         createTestCycleResponse: CreateTestCycleResponse,
     ) {
         requestFactory.runCatching {
@@ -31,7 +37,7 @@ class UpdateTestCycleRequestSender(
                     jsonMapper.encodeToString(
                         UpdateTestCycleRequest(
                             testRunId = createTestCycleResponse.id,
-                            addedTestRunItems = mapSuiteToTestRunItems(suite)
+                            addedTestRunItems = mapSuiteToTestRunItems(testNgZephyrSuite)
                         )
                     )
                 )
@@ -44,6 +50,6 @@ class UpdateTestCycleRequestSender(
     private fun mapSuiteToTestRunItems(suite: TestNgZephyrSuite): List<TestRunItem> {
         val testCasesWithResults = suite.testCasesWithDataSetResults
         return testCasesWithResults.mapIndexedTo(ArrayList(testCasesWithResults.size))
-        { i, zephyrTestResult -> TestRunItem(i, SerializableTestResult(zephyrTestResult.id)) }
+        { i, zephyrTestResult -> TestRunItem(i, UpdateTestCycleTestResult(zephyrTestResult.id)) }
     }
 }
