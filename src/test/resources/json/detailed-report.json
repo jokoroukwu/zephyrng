@@ -1,0 +1,175 @@
+{
+  "testRunsDetailReports": [
+    {
+      "testRun": {
+        "key": "NZT-83",
+        "name": "New Test Run",
+        "iteration": {},
+        "projectVersion": {},
+        "status": {
+          "name": "Not executed",
+          "color": "#cfdf",
+          "i18nKey": "TEST_RUN.STATUS"
+        },
+        "plannedStartDate": "2021-02-03T16:22:53.292Z",
+        "plannedEndDate": "2021-02-03T16:22:53.292Z"
+      },
+      "testResults": [
+        {
+          "id": 7756010,
+          "lastTestResult": false,
+          "automated": false,
+          "status": {
+            "name": "Not Executed",
+            "color": "#cfdf",
+            "i18nKey": "TEST_RUN.STATUS"
+          },
+          "testCase": {
+            "id": 741371,
+            "key": "PROJ-TK10",
+            "name": "Если приходит запрос, то уходит ответ",
+            "precondition": "Поднять контейнеры"
+          },
+          "testRun": {
+            "key": "NZT-83",
+            "name": "New Test Run",
+            "iteration": {},
+            "projectVersion": {},
+            "status": {
+              "name": "Not executed",
+              "color": "#cfdf",
+              "i18nKey": "TEST_RUN.STATUS"
+            },
+            "plannedStartDate": "2021-02-03T16:22:53.292Z",
+            "plannedEndDate": "2021-02-03T16:22:53.292Z"
+          },
+          "user": {},
+          "assignedToUser": {},
+          "environment": {},
+          "issues": [],
+          "testScriptResults": [
+            {
+              "id": 0,
+              "index": 0,
+              "sourceScriptType": "STEP_BY_STEP",
+              "description": "Click menu button",
+              "testResultId": 773,
+              "status": {
+                "name": "Pass",
+                "color": "#ccfcf",
+                "i18nKey": "TEST_RES"
+              },
+              "issues": [],
+              "parameterSetId": 1
+            },
+            {
+              "id": 1,
+              "index": 1,
+              "sourceScriptType": "STEP_BY_STEP",
+              "description": "Click menu button",
+              "testResultId": 773,
+              "status": {
+                "name": "Fail",
+                "color": "#ccfcf",
+                "i18nKey": "TEST_RES"
+              },
+              "issues": [],
+              "parameterSetId": 1
+            },
+            {
+              "id": 1,
+              "index": 0,
+              "sourceScriptType": "STEP_BY_STEP",
+              "description": "Click menu button",
+              "testResultId": 773,
+              "status": {
+                "name": "Blocked",
+                "color": "#ccfcf",
+                "i18nKey": "TEST_RES"
+              },
+              "issues": [],
+              "parameterSetId": 1
+            }
+          ]
+        },
+        {
+          "id": 7756010,
+          "lastTestResult": false,
+          "automated": false,
+          "status": {
+            "name": "Not Executed",
+            "color": "#cfdf",
+            "i18nKey": "TEST_RUN.STATUS"
+          },
+          "testCase": {
+            "id": 741371,
+            "key": "PROJ-TK10",
+            "name": "Если приходит запрос, то уходит ответ",
+            "precondition": "Поднять контейнеры"
+          },
+          "testRun": {
+            "key": "NZT-83",
+            "name": "New Test Run",
+            "iteration": {},
+            "projectVersion": {},
+            "status": {
+              "name": "Not executed",
+              "color": "#cfdf",
+              "i18nKey": "TEST_RUN.STATUS"
+            },
+            "plannedStartDate": "2021-02-03T16:22:53.292Z",
+            "plannedEndDate": "2021-02-03T16:22:53.292Z"
+          },
+          "user": {},
+          "assignedToUser": {},
+          "environment": {},
+          "issues": [],
+          "testScriptResults": [
+            {
+              "id": 0,
+              "index": 0,
+              "sourceScriptType": "STEP_BY_STEP",
+              "description": "Click menu button",
+              "testResultId": 773,
+              "status": {
+                "name": "Pass",
+                "color": "#ccfcf",
+                "i18nKey": "TEST_RES"
+              },
+              "issues": [],
+              "parameterSetId": 1
+            },
+            {
+              "id": 2,
+              "index": 1,
+              "sourceScriptType": "STEP_BY_STEP",
+              "description": "Click menu button",
+              "testResultId": 773,
+              "status": {
+                "name": "Fail",
+                "color": "#ccfcf",
+                "i18nKey": "TEST_RES"
+              },
+              "issues": [],
+              "parameterSetId": 1
+            },
+            {
+              "id": 3,
+              "index": 0,
+              "sourceScriptType": "STEP_BY_STEP",
+              "description": "Click menu button",
+              "testResultId": 773,
+              "status": {
+                "name": "Blocked",
+                "color": "#ccfcf",
+                "i18nKey": "TEST_RES"
+              },
+              "issues": [],
+              "parameterSetId": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
