@@ -5,7 +5,7 @@ plugins {
     id("signing")
 }
 
-group = "com.github.jokoroukwu"
+group = "io.github.jokoroukwu"
 version = "0.1.0"
 
 repositories {
