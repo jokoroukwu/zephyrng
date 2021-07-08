@@ -27,7 +27,7 @@ object ZephyrNgConfigLoaderImpl : ZephyrNgConfigLoader {
         val yamlInputStream = System.getenv(envVarName)?.fileInputStream()
             ?: System.getProperty(systemPropName)?.fileInputStream()
             ?: ClassLoader.getSystemResourceAsStream(fileName)
-            ?: throw FileNotFoundException("ZephyrNG configuration file not found at classpath: $fileName")
+            ?: throw FileNotFoundException("ZephyrNG configuration file not found: $fileName")
 
         val settings = LoadSettings.builder()
             .setEnvConfig(Optional.of(SystemPropertyEnvConfig))
@@ -41,7 +41,7 @@ object ZephyrNgConfigLoaderImpl : ZephyrNgConfigLoader {
             Load(settings, SystemPropResolvingConstructor(settings)).loadFromInputStream(it.buffered())
                 .let { yamlObject -> yamlObject as Map<String, Any?> }
                 .run(ZephyrNgConfigLoaderImpl::parseZephyrConfig)
-                .also { logger.debug { "ZephyrNg configuration successfully loaded: $it}" } }
+                .also { logger.debug { "ZephyrNg configuration loaded successfully" } }
         }
     }
 
@@ -61,7 +61,7 @@ object ZephyrNgConfigLoaderImpl : ZephyrNgConfigLoader {
 
     private fun String.fileInputStream(): InputStream {
         return Paths.get(this).takeIf(Files::exists)?.run(Files::newInputStream)
-            ?.also { logger.info { "ZephyrNG configuration file found: $this" } }
+            ?.also { logger.trace { "ZephyrNG configuration file found: $this" } }
             ?: throw  FileNotFoundException("ZephyrNG configuration file not found: $this")
     }
 }

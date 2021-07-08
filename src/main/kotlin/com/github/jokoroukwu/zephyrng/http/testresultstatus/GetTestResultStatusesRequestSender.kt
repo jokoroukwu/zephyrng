@@ -24,13 +24,12 @@ class GetTestResultStatusesRequestSender(
         zephyrProjectId: Long
     ): List<SerializableTestResultStatusItem> {
 
-        return requestFactory.runCatching {
-            get(urlTemplate.format(zephyrProjectId))
-                .authentication().basic(zephyrConfig.username(), zephyrConfig.password())
+        return zephyrConfig.runCatching {
+            requestFactory.get(urlTemplate.format(zephyrProjectId))
+                .authentication().basic(username(), password())
                 .treatResponseAsValid()
                 .response(ZephyrResponseDeserializer)
                 .third.get()
-
         }.getOrElse { cause -> throw ZephyrException(errorMessageTemplate, cause) }
             .validateStatusCode { "${errorMessageTemplate}: unsuccessful status code" }
             .runCatching { getJsonBody<List<SerializableTestResultStatusItem>>() }

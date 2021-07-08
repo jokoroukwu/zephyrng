@@ -32,9 +32,9 @@ class CreateTestCycleRequestSender(
         testNgZephyrSuite: TestNgZephyrSuite,
     ): CreateTestCycleResponse {
         val testCycleName = testNgZephyrSuite.name
-        return requestFactory.runCatching {
-            post(url)
-                .authentication().basic(zephyrConfig.username(), zephyrConfig.password())
+        return zephyrConfig.runCatching {
+            requestFactory.post(url)
+                .authentication().basic(username(), password())
                 .jsonBody(
                     jsonMapper.encodeToString(
                         CreateTestCycleRequest(
@@ -46,8 +46,7 @@ class CreateTestCycleRequestSender(
                     )
                 ).treatResponseAsValid()
                 .await(ZephyrResponseDeserializer)
-        }
-            .getOrElse { cause -> throw ZephyrException("$errorMessageTemplate $testCycleName", cause) }
+        }.getOrElse { cause -> throw ZephyrException("$errorMessageTemplate $testCycleName", cause) }
             .validateStatusCode { "$errorMessageTemplate $testCycleName: unsuccessful status code" }
             .runCatching { getJsonBody<CreateTestCycleResponse>() }
             .getOrElse { cause ->

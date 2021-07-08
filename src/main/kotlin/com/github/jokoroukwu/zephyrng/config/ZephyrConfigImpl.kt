@@ -19,4 +19,8 @@ data class ZephyrConfigImpl(
     override fun username() = username
 
     override fun password() = password
+
+    override fun toString() =
+        "{timeZone: $timeZone, jiraUrl: $jiraUrl, projectKey: $projectKey, username: $username, password: $password}"
+
 }
