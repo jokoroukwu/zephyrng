@@ -13,7 +13,7 @@ For Gradle project you should add the dependency first:
 
 ```Groovy
 dependencies {
-    implementation("io.github.microutils:kotlin-logging:2.0.6")
+    implementation "io.github.jokoroukwu:zephyrng:0.1.0"
 }
 ```
 
@@ -22,7 +22,7 @@ Then register ZephyrNgListener to apply library functionality:
 ```Groovy
 test {
     useTestNG() {
-        listeners += ['io.github.jokoroukwu.zephyrng.ZephyrNgListener']
+        listeners += ["io.github.jokoroukwu.zephyrng.ZephyrNgListener"]
     }
 }
 ```
