@@ -1,45 +1,42 @@
 plugins {
-    kotlin("jvm")
-    kotlin("plugin.serialization")
+    kotlin("jvm") version "1.4.10"
+    kotlin("plugin.serialization") version "1.4.10"
     id("maven-publish")
     id("signing")
 }
 
 group = "io.github.jokoroukwu"
-version = "0.1.0"
+version = "0.1.1"
 
 repositories {
     mavenCentral()
+    mavenLocal()
     jcenter()
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
-
-    implementation("org.snakeyaml:snakeyaml-engine:2.3")
-    implementation("com.github.kittinunf.fuel:fuel:2.2.3")
+    implementation(kotlin("stdlib", "1.4.10"))
     implementation("org.testng:testng:7.3.0")
     implementation("io.github.microutils:kotlin-logging:2.0.6")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+    api("io.github.jokoroukwu:zephyr-api:0.1.1")
+
     testImplementation("io.mockk:mockk:1.10.6")
     testImplementation("org.assertj:assertj-core:3.19.0")
-    testImplementation("com.github.tomakehurst:wiremock-jre8:2.27.2")
     testRuntimeOnly("ch.qos.logback:logback-classic:1.2.3")
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
     withSourcesJar()
     withJavadocJar()
-
 }
 
 tasks.compileKotlin {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 
@@ -90,9 +87,9 @@ signing {
     sign(publishing.publications["zephyrng"])
 }
 
+
 tasks.test {
     useTestNG()
-
     testLogging {
         showStandardStreams = true
     }

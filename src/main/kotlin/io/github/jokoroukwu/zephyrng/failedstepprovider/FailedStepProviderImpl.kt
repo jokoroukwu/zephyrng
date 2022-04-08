@@ -1,6 +1,6 @@
 package io.github.jokoroukwu.zephyrng.failedstepprovider
 
-import io.github.jokoroukwu.zephyrng.annotations.ZephyrStep
+import io.github.jokoroukwu.zephyrapi.annotations.Step
 import mu.KotlinLogging
 import org.testng.ITestResult
 
@@ -11,10 +11,10 @@ object FailedStepProviderImpl : FailedStepProvider {
     /**
      * Walks the stacktrace of provided TestNG test result in attempt to find the failed step
      */
-    override fun getFailedStep(testResult: ITestResult): ZephyrStep? {
+    override fun getFailedStep(testResult: ITestResult): Step? {
         return testResult.throwable?.stackTrace.ifNotNullNotEmpty {
             val testClass = testResult.testClass.realClass
-            var failedStep: ZephyrStep? = null
+            var failedStep: Step? = null
             var i = 0
             var currentElement = it[i]
             var currentClass = Class.forName(currentElement.className)
@@ -52,9 +52,9 @@ object FailedStepProviderImpl : FailedStepProvider {
     private fun isWithinTestClassScope(testClass: Class<*>, currentClass: Class<*>) =
         testClass == currentClass || currentClass.isAssignableFrom(testClass)
 
-    private fun walkClassMethods(elementClass: Class<*>, expectedMethodName: String): ZephyrStep? {
+    private fun walkClassMethods(elementClass: Class<*>, expectedMethodName: String): Step? {
         return elementClass.declaredMethods.find { it.name == expectedMethodName }
-            ?.getDeclaredAnnotation(ZephyrStep::class.java)
+            ?.getDeclaredAnnotation(Step::class.java)
             ?.apply {
                 logger.trace {
                     "found ZephyrStep annotation: {annotation: {value: $value, description: $description}, " +
