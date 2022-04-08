@@ -1,6 +1,6 @@
 package io.github.jokoroukwu.zephyrng.testcasekeyprovider
 
-import io.github.jokoroukwu.zephyrng.annotations.TestCaseKey
+import io.github.jokoroukwu.zephyrapi.annotations.TestCaseKey
 import org.testng.ITestNGMethod
 
 object TestCaseKeyProviderImpl : TestCaseKeyProvider {
@@ -12,7 +12,7 @@ object TestCaseKeyProviderImpl : TestCaseKeyProvider {
         } else {
             val declaredAnnotation: Annotation? =
                 method.realClass.getDeclaredAnnotation<Annotation>(TestCaseKey::class.java)
-            if (declaredAnnotation is TestCaseKey) declaredAnnotation.value else null
+            if (declaredAnnotation is TestCaseKey) declaredAnnotation.value.trim() else null
         }
     }
 }

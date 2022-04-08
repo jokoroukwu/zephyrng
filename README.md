@@ -13,7 +13,7 @@ For Gradle project you should add the dependency first:
 
 ```Groovy
 dependencies {
-    implementation "io.github.jokoroukwu:zephyrng:0.1.0"
+    implementation "io.github.jokoroukwu:zephyrng:0.1.1"
 }
 ```
 
@@ -22,7 +22,7 @@ Then register ZephyrNgListener to apply library functionality:
 ```Groovy
 test {
     useTestNG() {
-        listeners += ["io.github.jokoroukwu.zephyrng.ZephyrNgListener"]
+        listeners += ["io.github.jokoroukwu.zephyrng.TestNgZephyrAdapter"]
     }
 }
 ```
@@ -44,14 +44,14 @@ username: ${username:?err}
 password: ${password:?err}
 ```
 
-For placeholders like ```${password:?err}``` either environment variables or system properties may be used as a
-substitute. Those placeholders may be used for any ```zephyrng-config.yml``` properties, not just credentials.
+Any placeholders like ```${password:?err}``` can be substituted with either environment variables or system properties
+with environment variables taking precedence over system properties.<br><br>
 
-The following order is used when the path to ```zephyrng.config.yml``` needs to be resolved (whichever succeeds first) :
+The path to ```zephyr-config.yml``` file is resolved as follows (whichever succeeds first):
 
-- If ```ZEPHYRNG_CONFIG``` environment variable is set, then its value is used as an absolute path
-- If ```zephyrng.config``` system property is set, then its value is used as an absolute path
-- At last, classpath resources are scanned for ```zephyrng-config.yml``` file
+- If ```ZEPHYR_CONFIG``` environment variable is set, then its value is used as an absolute path
+- If ```zephyr.config``` system property is set, then its value is used as an absolute path
+- Finally, classpath resources are scanned for ```zephyr-config.yml``` file
 
 ## Licence
 
