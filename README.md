@@ -1,4 +1,4 @@
-## ZephyrNG
+# ZephyrNG
 
 A simple library for publishing TestNG test results using Zephyr for JIRA Server API, written in pure Kotlin and fully
 interoperable with Java. The library uses the undocumented Zephyr for Jira server api which allows a lot more
@@ -7,19 +7,21 @@ flexibility and functionality, i.e. for now the following features are supported
 - Zephyr step mapping
 - Publishing of data driven tests results
 
-## Installation
+The following section describes how to configure the library to use it as a standalone.<br>
+If your project uses Gradle you may consider
+using [zephyr-gradle-plugin](https://github.com/jokoroukwu/zephyr-gradle-plugin) instead.
 
-For Gradle project you should add the dependency first:
+## Setup
+
+Simply add the dependency and register the listener:
+
+- ### Gradle
 
 ```Groovy
 dependencies {
     implementation "io.github.jokoroukwu:zephyrng:0.1.1"
 }
-```
 
-Then register ZephyrNgListener to apply library functionality:
-
-```Groovy
 test {
     useTestNG() {
         listeners += ["io.github.jokoroukwu.zephyrng.TestNgZephyrAdapter"]
@@ -27,31 +29,88 @@ test {
 }
 ```
 
-Finally, you should add ```zephyrng-config.yml``` configuration file which should look like this:
+- ### Maven
+
+```XML
+
+<dependency>
+    <groupId>io.github.jokoroukwu</groupId>
+    <artifactId>zephyrng</artifactId>
+    <version>0.1.1</version>
+</dependency>
+
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-surefire-plugin</artifactId>
+<version>${plugin.version}</version>
+<configuration>
+    <properties>
+        <property>
+            <name>listener</name>
+            <value>io.github.jokoroukwu.zephyrng.TestNgZephyrAdapter</value>
+        </property>
+    </properties>
+</configuration>
+</plugin>
+```
+
+### YAML configuration
+
+Some additional configuration is also required and can be specified in ```zephyr-config.yml``` file.<br>
+The file should have the following format:
 
 ```YAML
-# The timezone used to display Zephyr test result start and end time
+# The timezone used to display Zephyr test run start and end time
 time-zone: GMT+3
 
 # Your JIRA server project key
 project-key: PROJKEY
 
 # Your JIRA server URL
-jira-url: https://your-jira-server:8089
+jira-url: https://${your.jiraserver.address}
 
 # Your JIRA credentials.
-username: ${username:?err}
-password: ${password:?err}
+username: ${username}
+password: ${password}
 ```
 
-Any placeholders like ```${password:?err}``` can be substituted with either environment variables or system properties
-with environment variables taking precedence over system properties.<br><br>
+Any placeholders such as ```${password:?err}``` will be substituted with either environment variables or system
+properties of the respective name. Environment variables take precedence over system properties.<br><br>
 
 The path to ```zephyr-config.yml``` file is resolved as follows (whichever succeeds first):
 
-- If ```ZEPHYR_CONFIG``` environment variable is set, then its value is used as an absolute path
-- If ```zephyr.config``` system property is set, then its value is used as an absolute path
-- Finally, classpath resources are scanned for ```zephyr-config.yml``` file
+- If ```ZEPHYR_CONFIG``` environment variable is set, then its value is used as an absolute path.
+- If ```zephyr.config``` system property is set, then its value is used as an absolute path.
+- Finally, classpath resources are scanned for ```zephyr-config.yml``` file.
+
+## Usage
+
+A test method needs to be annotated with ```@TestCaseKey```
+to have its result collected, properly mapped to the existing test case and published to Zephyr. Example:
+
+```java
+public class MyTestClass {
+
+    @Test
+    @TestCaseKey("MYPROJ-123")
+    public void should_test_something() {
+
+    }
+}
+```
+
+You may optionally annotate any method with ```@Step```. This will map the method's result to the corresponding Zephyr
+step. Example:
+
+```Java
+public class MyTestClass {
+
+    @Step(value = 0, description = "create user")
+    public void createUser(User user) {
+
+    }
+}
+```
 
 ## Licence
 
